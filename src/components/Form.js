@@ -10,8 +10,7 @@ export class Form {
 
     }
 
-    getRoot(){        
-
+    getRoot(){
         this.$root.innerHTML = this.toHTML();
         return this.$root;
     }
@@ -34,13 +33,12 @@ export class Form {
                       >Имя</label
                     >
                     <input
-                      type="tel"
+                      type="text"
                       name="inputName"
                       id="inputName"
                       class="input"
-                      placeholder=""
+                      placeholder="Имя"
                       required=""
-                      value="Иван"
                       autocomplete="off"
                     />
                     <!-- <div id="tooltipContainerEmailError" class="tooltip tooltip-error">
@@ -57,7 +55,6 @@ export class Form {
                       id="inputPhone"
                       class="input"
                       placeholder="+7(000) 000-00-00"
-                      value="+79506602664"
                       required=""
                       autocomplete="off"
                     />
@@ -76,7 +73,6 @@ export class Form {
                       class="input"
                       placeholder="00001"
                       required=""
-                      value="00003"
                       autocomplete="off"
                     />
   
@@ -94,6 +90,7 @@ export class Form {
               </div>
               
             </form>
+            <div class="order-message"></div>
 
             <div class="login-block-public">
               Согласен с условиями
@@ -102,7 +99,7 @@ export class Form {
               >
               и правилами розыгрыша.
             </div>
-            <div class="order-message"></div>
+            
           </div>
         </div>
 
@@ -127,37 +124,46 @@ export class Form {
                 mask: /^([А-яё]{0,23})$/
             });
 
-
     }
 
     validate(){
 
-        if(this.inputCoupon.value.length < 5 || this.inputCoupon.value === ""){
-            console.log('couponMask', this.inputCoupon.value.length);
-            // document.getElementById('tooltipMessageCouponError').innerHTML = 'Введите корректный номер купона';
+        if(this.inputName.value.length > 25 || this.inputName.value === ""){
+            document.getElementById('inputName').classList.add('no-success');
+            // document.getElementById('tooltipMessagePhoneError').innerHTML = 'Введите имя';
             return false;
+        }else {
+            document.getElementById('inputName').classList.remove('no-success');
         }
 
-
-        if(this.inputPhone.value.length < 16 || this.inputCoupon.value === ""){
-            console.log('inputPhone', this.inputPhone.value.length);
+        if(this.inputPhone.value.length < 16 || this.inputPhone.value === ""){
+            document.getElementById('inputPhone').classList.add('no-success');
             // document.getElementById('tooltipMessagePhoneError').innerHTML = 'Введите корректный номер телефона';
             return false;
+        }else {
+            document.getElementById('inputPhone').classList.remove('no-success');
         }
+
+        if(this.inputCoupon.value.length < 5 || this.inputCoupon.value === ""){
+            document.getElementById('inputCoupon').classList.add('no-success');
+            // document.getElementById('tooltipMessageCouponError').innerHTML = 'Введите корректный номер купона';
+            return false;
+        }else {
+            document.getElementById('inputCoupon').classList.remove('no-success');
+        }
+
         return true;
     }
 
     getFormData(){
         const formData = {};
         formData['name'] = this.inputName.value;
-        formData['phone'] = this.inputPhone.value;
+        formData['phone'] = this.inputPhone.value.trim().replace('(', '').replace(')', '').replace('-', '').replace('-', '').slice(1);
         formData['code'] = this.inputCoupon.value;
-        // console.log('formData', formData);
         return formData;
     }
 
     onClick(event){
-        // console.log('root', this.$root);
         const verification = new Verification();
         const $message = document.querySelector('.order-message');
 
@@ -169,7 +175,8 @@ export class Form {
             //Данные для отправки смс
             const smsLogin = 'pizzapresto';
             const smsPassword = 'Presto*2020';
-            const smsPhone = '79506602664';
+            // const smsPhone = '79505556677';
+            const smsPhone = this.getFormData().phone;
             const smsCode = generateCode();
             storage('_smsCode', smsCode);
             const smsMessage = `${smsCode} - ваш одноразовый код подтверждения Клан Престо`;
@@ -178,21 +185,38 @@ export class Form {
 
             if(this.validate()){
 
-                // отправка смс
-                // const smsUrl = 'https://smsc.ru/sys/send.php?login='+ smsLogin +'&psw='+ smsPassword +'&phones='+ smsPhone +'&mes=' + smsMessage + '';
+
+
+                //отправка смс
+                const smsUrl = 'https://smsc.ru/sys/send.php?login='+ smsLogin +'&psw='+ smsPassword +'&phones='+ smsPhone +'&mes=' + smsMessage + '';
                 // request(smsUrl);
 
+                fetch(smsUrl)
+                .then((resp) => resp.json())
+                .then(response => {
+
+
+                    if(response){
+                        console.info('fetch success', response);
+                    }else {
+                        console.info('fetch error', response);
+                    }
+                });
+
                 //имитация отправки смс
-                const $dataCode = document.querySelector('.data-code');
-                setTimeout(function(){
-                    $dataCode.innerHTML = `<div class="data-code-card"> ${smsCode} - ваш одноразовый код подтверждения Клан Престо</div>`;
-                }, 1000);
+                // const $dataCode = document.querySelector('.data-code');
+                // setTimeout(function(){
+                //     $dataCode.innerHTML = `<div class="data-code-card"> ${smsCode} - ваш одноразовый код подтверждения Клан Престо</div>`;
+                // }, 1000);
                 //********************
 
                 //Показ окна с вводом кода из смс
                 this.$root.innerHTML = verification.toHTML();
+                document.getElementById("inputSmsCode").focus();
                 //********************
 
+                //появление повторной отправки кода
+                // verification.repeatSms();
                 $message.innerHTML = '';
 
             }else {
@@ -202,17 +226,10 @@ export class Form {
 
         } else if(event.target.dataset.type === "send"){
 
-
-            // console.log('storage', storage('_smsCode') );
-            console.log('localStorage', localStorage.getItem('_smsCode'));
-            console.log('verification.validate()', verification.validate() );
-
             
             if(verification.validate() === localStorage.getItem('_smsCode')){
                 $message.innerHTML = '';
                 const formDataForm = this.getFormData();
-                
-                console.log('formDataForm', formDataForm);
 
                 const formDataSend = new FormData();
                 formDataSend.append('name', formDataForm.name);
@@ -224,28 +241,20 @@ export class Form {
                     body: formDataSend
                 })
                 .then((resp) => resp.json())
-                .then(function(response) {
+                .then(response => {
                     console.info('fetch()', response);
-                    return response;
+
+                    if(response){
+                        this.$root.innerHTML = verification.success();
+                    }else {
+                        this.$root.innerHTML = verification.error();
+                    }
                 });
                 
 
-                // request('https://api.pizzapresto.ru/clan_user', 'POST', formDataSend)
-                // .then(function(response) {
-                //     console.info('fetch()', response);
-                //     return response;
-                // });
-                
-                this.$root.innerHTML = verification.success();
             }else {
                 $message.innerHTML = '<span>Код из смс не соответствует. Пожалуйста, повторите еще раз</span>';
             }
-
-
-            // console.log('verification', verification.validate());
-            // if(storage('_smsCode')){
-            //     request(urlLink, 'POST', {});
-            // }
         } else {
 
         }
@@ -253,26 +262,21 @@ export class Form {
 
     onSubmit(event){
         event.preventDefault();
-        // проверка всех полей формы
-        console.log('onSubmit preventDefault');
-
-        // if(storage('_smsCode')){
-        //     request(urlLink, 'POST', formData);
-        // }
 
         //Если поля заполнены верно появляется поле кода из СМС
     }
 
     onInput(event){
-        // console.log('onInput', event.target.id);
         //Получение данных с формы и запись в LocalStorage
         const formData = JSON.stringify(this.getFormData());
         storage('_formData', formData);
 
+        this.validate();
+
 
 
         if(event.target.value === "") {
-            console.log('Error пустое поле', event.target);
+            // console.log('Error пустое поле', event.target);
         }
         if(event.target.dataset.type === "registration"){
 
@@ -293,21 +297,6 @@ export class Form {
         this.inputCoupon = document.getElementById('inputCoupon');
 
         this.mask();
-
-
-        //вывод результатов базы
-        const $dataList = document.querySelector('.data-list');
-        let usersArr = [];
-        console.log('this.urlLink', this.urlLink);
-        const res = request(this.urlLink);
-        res.then(users => {
-          users.forEach(user => {
-            usersArr.push(`<div>${user.name || 'имя'} : ${user.phone || 'телефон'} : ${user.code || 'номер'}</div>`);
-          });
-
-          $dataList.innerHTML = usersArr.join('');
-
-        })
 
     }
 
