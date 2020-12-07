@@ -2,12 +2,16 @@ import imgLogo from '../img/logo-clan.png';
 import imgIphone from '../img/iphone12.png';
 import imgIphoneBg from '../img/iphone-bg.png';
 import imgBannerTopText from '../img/banner-top-text.png';
-// import {Slider} from "./Slider";
+import {Card} from "./Card";
+import {Slider} from "./Slider";
 
 
 export class Home {
 
     constructor() {
+        this.slider = new Slider();
+        this.card = new Card();
+
 
     }
 
@@ -18,16 +22,17 @@ export class Home {
                 <div class="layout">
                   <div class=header>
                     <a href=""# class="header-logo">Клан Престо</a>
-                    <div class="header-menu">
-                    <!--<a href="#/" class="header-menu__link">Главная</a>
-                        <a href="#add" class="header-menu__link">Добавить купон</a>
-                       <a href="#" class="header-menu__link">Эпизоды</a>
-                      <a href="#" class="header-menu__link">Персонажи</a>
-                      <a href="#" class="header-menu__link">Скидки на пиццу</a>
-                      <a href="#" class="header-menu__link">Условия розыгрыша</a> -->
-                      <a href="#add" class="c-btn c-btn-default">Зарегистрировать купон</a> 
-                    </div>                    
-                    <div class="header-hamburger"><span></span></div>        
+                    <div class="header-operation">
+                        <div class="header-menu">
+<!--                          <a href="#" class="header-menu__link">Эпизоды</a>-->
+<!--                          <a href="#" class="header-menu__link">Персонажи</a>-->
+<!--                          <a href="" class="header-menu__link">Условия розыгрыша</a>-->
+                          <a href="./doc/Uslovia_provedenia_aktsii_Klan_Presto.pdf" target="_blank" class="header-menu__link">Положение акции</a>
+                        </div>
+                        <a href="#add" class="c-btn c-btn-default">Зарегистрировать купон</a>                     
+                        <div class="header-hamburger"><span></span></div> 
+                    </div>
+                           
                   </div>          
                 </div>
               </div>
@@ -37,7 +42,7 @@ export class Home {
                     <!--<img src="./img/banner-top.jpg" alt="Баннер с главными героями «Клан Престо»">-->
                     <div class="banner-top__body">
                       <div class="banner-top__logo">
-                        <img src="${imgLogo}" class="banner-top__logo-pic" alt="Логотип «Клан Престо»">
+                        <img src="./src/img/logo-clan.png" class="banner-top__logo-pic" alt="Логотип «Клан Престо»">
                         <img src="${imgBannerTopText}" class="banner-top__logo-text" alt="текст">
                       </div>
                       <div class="c-btn-layout c-btn-layout--left">
@@ -53,10 +58,21 @@ export class Home {
                   </div>
                 </div>
               </div>
+              <div class="history">
+                  <div class="layout">              
+                      <div class="history-slider"></div> 
+                  </div>             
+              </div>
+<!--              <div class="story"></div>-->
+              ${this.slider.toHTML()}
+              ${this.init()}
+              
+              ${this.card.toHTML()}
+              
             
               <div class="registration"></div>
               <!--START regulations-->
-              <div class="regulation">
+              <div class="regulation" id="conditions">
                 <div class="layout">
                   <div class="regulation-grid">
                     <div class="regulation-img">
@@ -123,5 +139,11 @@ export class Home {
               </div>
             </div>
         `
+    }
+
+    init(){
+       this.slider.init();
+       SimpleScrollbar.initAll();
+       return '';
     }
 }

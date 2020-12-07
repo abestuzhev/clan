@@ -11,6 +11,7 @@ var useHash = true; // Defaults to: false
 var hash = '#'; // Defaults to: '#'
 var router = new Navigo(root, useHash, hash);
 const $app = document.getElementById('app');
+const home = new Home();
 //
 router
     .on({
@@ -33,10 +34,12 @@ router
 
 router.on(() => {
     $app.innerHTML = '';
-    $app.innerHTML = new Home().toHTML();
+
+    $app.innerHTML = home.toHTML();
+    home.init();
+
     const $btn = document.querySelector('.banner-top .c-btn-layout');
     $btn.style.top = (clientHeight - 82) + 'px';
-    // console.log('home');
 });
 
 router.notFound(() => {
@@ -48,4 +51,10 @@ router.resolve();
 
 
 
+const $hamburger = document.querySelector('.header-hamburger');
+const $menu = document.querySelector('.header-menu');
+$hamburger.addEventListener('click', (event)=> {
+    $hamburger.classList.toggle('active');
+    $menu.classList.toggle('is-show');
+});
 

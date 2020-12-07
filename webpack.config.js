@@ -56,6 +56,10 @@ module.exports = {
       {
         from: path.resolve(__dirname, 'src/favicon.ico'),
         to: path.resolve(__dirname, 'dist')
+      },
+      {
+        from: path.resolve(__dirname, 'src/img/**'),
+        to: path.resolve(__dirname, 'dist/src/')
       }
     ]),
     new MiniCssExtractPlugin({
@@ -99,7 +103,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            outputPath: 'img',
+            outputPath: './src/img',
           }
         }],
       },
@@ -108,7 +112,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            outputPath: 'font'
+            outputPath: './src/font'
           }
         }],
       },
