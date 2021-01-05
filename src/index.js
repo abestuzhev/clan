@@ -12,6 +12,8 @@ var hash = '#'; // Defaults to: '#'
 var router = new Navigo(root, useHash, hash);
 const $app = document.getElementById('app');
 const home = new Home();
+
+const closeAction = true; //настройка оставляет только историю, убирая регистрацию и информацию о подарке
 //
 router
     .on({

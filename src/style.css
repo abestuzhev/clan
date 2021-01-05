@@ -160,6 +160,11 @@ ul, ol {
     padding: 13px 0;
 }
 
+.header-timer {
+    /*font-family: 'Bebas Neue', sans-serif;*/
+    /*font-size: 15px;*/
+}
+
 .header-logo {
     display: inline-block;
     text-decoration: none;

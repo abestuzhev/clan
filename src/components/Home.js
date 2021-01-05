@@ -4,6 +4,7 @@ import imgIphoneBg from '../img/iphone-bg.png';
 import imgBannerTopText from '../img/banner-top-text.png';
 import {Card} from "./Card";
 import {Slider} from "./Slider";
+import Timer from "./Timer";
 
 
 export class Home {
@@ -11,8 +12,6 @@ export class Home {
     constructor() {
         this.slider = new Slider();
         this.card = new Card();
-
-
     }
 
     toHTML() {
@@ -22,6 +21,7 @@ export class Home {
                 <div class="layout">
                   <div class=header>
                     <a href=""# class="header-logo">Клан Престо</a>
+                    <div class="header-timer">До конца акции: </div>
                     <div class="header-operation">
                         <div class="header-menu">
 <!--                          <a href="#" class="header-menu__link">Эпизоды</a>-->
@@ -144,6 +144,8 @@ export class Home {
     init(){
        this.slider.init();
        SimpleScrollbar.initAll();
+
+        this.timer = new Timer('.header-timer');
        return '';
     }
 }
