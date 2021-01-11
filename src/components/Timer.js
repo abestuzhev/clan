@@ -1,22 +1,36 @@
 export default class Timer {
 
-    constructor($root){
-        this.countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
+    constructor(){
+        this.countDownDate = new Date("Jan 16, 2021 23:59:00").getTime();
         this.timer = '';
         this.distance = null;
-        this.$root = document.querySelector($root);
         this.startTimer();
+        let x = '';
     }
 
+    // start(){
+    //     setInterval(() => {
+    //         this.state.time++;
+    //         // this.render(this.state.time);
+    //     }, 1000);
+    //
+    // }
+
+
+    initTimer(){
+
+    }
 
 
 
     startTimer(){
 
+
         let x = setInterval(() => {
 
             // Get today's date and time
             let now = new Date().getTime();
+            let $time = document.querySelector('.c-timer');
 
             // Find the distance between now and the count down date
             this.distance = this.countDownDate - now;
@@ -28,21 +42,46 @@ export default class Timer {
             let seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
 
             // Output the result in an element with id="demo"
-            this.$root.innerHTML = `${days}d: ${hours}:${minutes}:${seconds}`;
 
             // If the count down is over, write some text
+            // console.log(`${days} дней ${hours}:${minutes}:${seconds}`);
+
+            const dayText = (days == "2" || days == "3" || days == "4") ? "дня" : "дней";
+
+            const redactTimer = (elem) => {
+                return (elem >= 10 ) ? elem : "0" + elem;
+            };
+
+            hours = redactTimer(hours);
+            minutes = redactTimer(minutes);
+            seconds = redactTimer(seconds);
+
+            if($time) {
+                $time.innerHTML = `<span>До конца акции: ${days} ${dayText} ${hours}:${minutes}:${seconds}</span>`;
+
+            }
 
             if (this.distance < 0) {
                 clearInterval(x);
-                this.$root.innerHTML = "EXPIRED";
+                $time.innerHTML = "<span>Акция закончилась!</span>";
             }
 
         }, 1000);
 
+        return x;
 
-        console.log("this.timer", this.timer);
 
-
+        // console.log("this.timer", this.timer);
     }
+
+    destroyTimer(){
+        clearInterval();
+    }
+
+    // render(time){
+    //     return `<div class="header-timer">${time}</div>`;
+    //     // return this.startTimer();
+    //     console.log("time", time)
+    // }
 
 }

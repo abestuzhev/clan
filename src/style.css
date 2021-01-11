@@ -27,7 +27,7 @@ html, body {
 ul, ol {
     padding: 0;
     margin: 0;
-    list-style-position:  inside;
+    list-style-position: inside;
 
 }
 
@@ -85,10 +85,16 @@ ul, ol {
     /*max-width: 1320px;*/
 }
 
+.banner-top-layout {
+
+    margin-bottom: 40px;
+}
+
 .banner-top {
     padding: 58px 0 150px;
+    /*padding: 40px 0 200px;*/
     position: relative;
-    background: url(./img/banner-top.jpg) 50% 50% no-repeat;
+    background: url(./img/banner-top.jpg) 40% 50% no-repeat;
 }
 
 .banner-top__message {
@@ -97,7 +103,7 @@ ul, ol {
     color: #333;
     font-size: 14px;
     border-radius: 10px;
-    box-shadow: 0 10px 30px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
@@ -136,6 +142,68 @@ ul, ol {
     opacity: 0;
 }
 
+.banner-full {
+    position: relative;
+    overflow: hidden;
+    padding: 30px 0;
+    height: 460px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(./img/banner-full.jpg) 70% 80% no-repeat;
+}
+
+.banner-full__img {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    bottom: 160px;
+    left: 43%;
+    transform: translateX(-50%);
+}
+
+.banner-full__body {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.banner-full__head {
+    font-size: 70px;
+}
+
+.banner-full__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2em;
+    color: #e3e137;
+    /*margin-bottom: 10px;*/
+}
+
+.banner-full__subtitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1em;
+    color: #e3e137;
+    margin-bottom: 20px;
+}
+
+.banner-full__timer {
+    margin-bottom: 20px;
+    height: 32px;
+}
+
+.banner-full__text {
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    opacity: .7;
+    margin-bottom: 10px;
+}
+
+.banner-full .c-btn {
+    display: inline-block;
+    max-width: 285px;
+}
+
 .header-layout {
     position: relative;
     z-index: 50;
@@ -160,9 +228,17 @@ ul, ol {
     padding: 13px 0;
 }
 
-.header-timer {
-    /*font-family: 'Bebas Neue', sans-serif;*/
-    /*font-size: 15px;*/
+.c-timer {
+    display: inline-block;
+}
+
+.c-timer span {
+    display: block;
+    padding: 4px 10px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    color: #fff;
+    opacity: .8;
 }
 
 .header-logo {
@@ -204,7 +280,7 @@ ul, ol {
 .header-menu__link {
     display: inline-block;
     margin-left: 20px;
-    color:#d9d9d9;
+    color: #d9d9d9;
     text-decoration: none;
     transition: all .2s ease-in-out;
     white-space: nowrap;
@@ -307,7 +383,7 @@ ul, ol {
     font-family: 'Bebas Neue', sans-serif;
     display: block;
     width: 100%;
-    background:#9c0e03;
+    background: #9c0e03;
     color: #e4e5e2;
     border-radius: 4px;
     font-size: 26px;
@@ -334,10 +410,42 @@ ul, ol {
     transition: all .2s ease-out;
     background-color: #d81c0d;
 }
+
 /* --------------------------------------- */
 /* --------------------------------------- */
 /* --------------------------------------- */
 /* --------------------------------------- */
+
+.registration {
+    display: none;
+}
+
+.registration-card {
+    padding: 20px 20px 30px;
+    /*border: 2px dotted #fff;*/
+    border-radius: 10px;
+    /*background-color: #303438;*/
+    background-color: #1c5082;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.registration-card__text {
+    margin-bottom: 10px;
+}
+
+.registration .c-btn {
+    display: inline-block;
+    max-width: 300px;
+    margin: 0 auto;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: white;
+    opacity: .8;
+}
 
 .regulation {
     padding: 90px 0;
@@ -363,6 +471,11 @@ ul, ol {
     line-height: 40px;
 }
 
+.regulation-note {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .regulation-head {
     margin-bottom: 20px;
 }
@@ -381,6 +494,7 @@ ul, ol {
     -webkit-box-align: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
+    margin-bottom: 30px;
 }
 
 .regulation-img {
@@ -402,7 +516,7 @@ ul, ol {
     left: 30%;
     display: block;
     max-width: 893px;
-    transform: translate(-50%,-50%)
+    transform: translate(-50%, -50%)
 }
 
 .regulation-body {
@@ -446,6 +560,16 @@ ul, ol {
     color: #8b8b8b;
 }
 
+.regulation .c-btn-layout {
+    position: relative;
+    z-index: 10;
+    margin-top: 20px;
+}
+
+.regulation .c-btn {
+    max-width: 400px;
+    margin: 0 auto;
+}
 
 /* --------------------------------------- */
 /* --------------------------------------- */
@@ -499,7 +623,7 @@ ul, ol {
 }
 
 .section-title {
-    font-family: Bebas Neue,sans-serif;
+    font-family: Bebas Neue, sans-serif;
     color: #e4e5e2;
     /* text-transform: uppercase; */
     font-size: 40px;
@@ -521,6 +645,7 @@ ul, ol {
     border-radius: 4px;
     position: relative;
 }
+
 .input.no-success {
     border: 2px solid #9c0e03;
 }
@@ -564,10 +689,10 @@ input::-webkit-inner-spin-button {
     transform-origin: 0 0;
 }
 
-.input:focus+.input__label {
+.input:focus + .input__label {
     transform: translate(-4px, -140%) scale(0.8);
     color: #e4e5e2;
-    background:#030202;
+    background: #030202;
 }
 
 .button-submit {
@@ -575,7 +700,7 @@ input::-webkit-inner-spin-button {
     display: block;
     width: 100%;
     /*height: 56px;*/
-    background:#9c0e03;
+    background: #9c0e03;
     color: #e4e5e2;
     border-radius: 4px;
     font-size: 24px;
@@ -648,10 +773,12 @@ input::-webkit-inner-spin-button {
     margin-bottom: 20px;
     font-family: 'Bebas Neue', sans-serif;
 }
+
 .notFound .c-btn {
     color: #8b8b8b;
     border-color: #8b8b8b;
 }
+
 /*************************************/
 /*************************************/
 /*************************************/
@@ -689,8 +816,8 @@ input::-webkit-inner-spin-button {
 }
 
 /*.success.is-show .success-icon {*/
-    /*transform: scale(1);*/
-    /*transition: all .5s .4s ease-in-out;*/
+/*transform: scale(1);*/
+/*transition: all .5s .4s ease-in-out;*/
 /*}*/
 
 .success-icon::after {
@@ -713,8 +840,8 @@ input::-webkit-inner-spin-button {
 
 /*.success.is-show .success-body {*/
 
-    /*opacity: 1;*/
-    /*transition: all 1s .4s ease-in-out;*/
+/*opacity: 1;*/
+/*transition: all 1s .4s ease-in-out;*/
 /*}*/
 
 .success-text {
@@ -739,7 +866,7 @@ input::-webkit-inner-spin-button {
 
 @keyframes checkmark {
     0% {
-       transform: scale(0);
+        transform: scale(0);
     }
     100% {
         transform: scale(1);
@@ -767,7 +894,6 @@ input::-webkit-inner-spin-button {
 /*************************************/
 
 
-
 .error {
     position: fixed;
     top: 0;
@@ -791,6 +917,7 @@ input::-webkit-inner-spin-button {
     text-align: center;
     margin-bottom: 20px;
 }
+
 .error-text a {
     color: #8b8b8b;
 }
@@ -807,13 +934,12 @@ input::-webkit-inner-spin-button {
 }
 
 
-
 /*************************************/
 /*************************************/
 /*************************************/
 
 .story {
-    padding: 0 0 40px;
+    padding: 20px 0 40px;
 
 }
 
@@ -911,7 +1037,6 @@ input::-webkit-inner-spin-button {
     width: auto;
     padding: 0 !important;
 }
-
 
 
 /*************************************/
@@ -1024,7 +1149,7 @@ input::-webkit-inner-spin-button {
     z-index: 999;
 }
 
-.person-card:hover  {
+.person-card:hover {
     transform: scale(1.02);
     transition: all .3s ease;
 }
@@ -1137,23 +1262,24 @@ input::-webkit-inner-spin-button {
     }
 
     .header-menu {
-        background-color: #000;
-        position: fixed;
-        top: 0;
-        right: -200px;
-        padding: 40px;
-        width: 200px;
-        display: block;
+        /*background-color: #000;*/
+        /*position: fixed;*/
+        /*top: 0;*/
+        /*right: -200px;*/
+        /*padding: 40px;*/
+        /*width: 200px;*/
+        /*display: block;*/
     }
 
     .header-menu__link {
         margin: 0;
-        padding: 14px 0;
+        /*padding: 14px 0;*/
         width: 100%;
         display: block;
         text-align: center;
         white-space: normal;
     }
+
 
     .story-card {
         display: block;
@@ -1170,7 +1296,6 @@ input::-webkit-inner-spin-button {
     }
 
 
-
     .story-pagination {
         width: 100%;
     }
@@ -1179,6 +1304,11 @@ input::-webkit-inner-spin-button {
     .swiper-container .swiper-button-prev {
         flex: 1 0 50px;
     }
+
+    .banner-full {
+        background-position: 50% 80%;
+    }
+
 }
 
 @media (max-width: 900px) {
@@ -1199,7 +1329,7 @@ input::-webkit-inner-spin-button {
         /*display: none;*/
     }
 
-    .header-hamburger  {
+    .header-hamburger {
         /*display: none;*/
     }
 
@@ -1291,7 +1421,7 @@ input::-webkit-inner-spin-button {
     }
 
     .section-title {
-        font-family: Bebas Neue,sans-serif;
+        font-family: Bebas Neue, sans-serif;
         font-size: 35px;
         line-height: 35px;
     }
@@ -1312,7 +1442,7 @@ input::-webkit-inner-spin-button {
 
 
     .header .c-btn {
-        display: none;
+        /*display: none;*/
     }
 
     .person-card__label {
@@ -1347,6 +1477,39 @@ input::-webkit-inner-spin-button {
     .story-card__text {
         font-size: 15px;
     }
+
+
+    .banner-full__img {
+        display: block;
+    }
+
+    .banner-full__head {
+        font-size: 38px;
+    }
+
+    .banner-full {
+        background-size: cover;
+        align-items: flex-end;
+        height: calc(100vh - 100px);
+        background-position: 60% 80%;
+    }
+
+    .header-operation .c-btn {
+        display: none;
+        font-size: 18px;
+        padding: 8px 15px;
+        margin-left: 0;
+        background-color: transparent;
+        border: 1px solid #fff;
+    }
+
+    .header-logo {
+        font-size: 20px;
+    }
+
+    .registration {
+        display: block;
+    }
 }
 
 @media (max-width: 340px) {
@@ -1356,6 +1519,7 @@ input::-webkit-inner-spin-button {
         font-size: 1.3em;
         line-height: .7;
     }
+
     .banner-top {
         background-position: 50% 100%;
     }
@@ -1405,6 +1569,7 @@ input::-webkit-inner-spin-button {
     }
 
 }
+
 @media (max-height: 850px) and (max-width: 790px) {
 
     .banner-top {
@@ -1420,7 +1585,6 @@ input::-webkit-inner-spin-button {
         display: block;
         margin-top: 30px;
     }
-
 
 
 }
@@ -1441,10 +1605,11 @@ input::-webkit-inner-spin-button {
 
 }
 
-@media (max-height: 570px) and (max-width: 790px){
+@media (max-height: 570px) and (max-width: 790px) {
 
     .banner-top {
     }
+
     .banner-top__logo-text {
         width: 100%;
         display: none !important;

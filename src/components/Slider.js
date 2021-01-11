@@ -53,6 +53,7 @@ export class Slider {
       return `
         <!--START story-->
       <div class="story">
+      <div class="section-title">История клана</div>
       <div class="layout">
       <div class="story-container swiper-container">
           <div class="story-slider swiper-wrapper">            

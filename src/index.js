@@ -4,6 +4,7 @@ import {Home} from './components/Home';
 import {Add} from './components/Add';
 import {NotFound} from './components/NotFound';
 import {Verification} from './components/Verification';
+import Timer from "./components/Timer";
 
 const clientHeight = document.documentElement.clientHeight;
 var root = null;
@@ -12,6 +13,7 @@ var hash = '#'; // Defaults to: '#'
 var router = new Navigo(root, useHash, hash);
 const $app = document.getElementById('app');
 const home = new Home();
+const timer = new Timer();
 
 const closeAction = true; //настройка оставляет только историю, убирая регистрацию и информацию о подарке
 //
@@ -39,8 +41,10 @@ router.on(() => {
 
     $app.innerHTML = home.toHTML();
     home.init();
+    timer.startTimer();
 
-    const $btn = document.querySelector('.banner-top .c-btn-layout');
+    // const $btn = document.querySelector('.banner-top .c-btn-layout');
+    const $btn = document.querySelector('.banner-full .c-btn-layout');
     $btn.style.top = (clientHeight - 82) + 'px';
 });
 
@@ -53,10 +57,10 @@ router.resolve();
 
 
 
-const $hamburger = document.querySelector('.header-hamburger');
 const $menu = document.querySelector('.header-menu');
-$hamburger.addEventListener('click', (event)=> {
-    $hamburger.classList.toggle('active');
-    $menu.classList.toggle('is-show');
-});
+// const $hamburger = document.querySelector('.header-hamburger');
+// $hamburger.addEventListener('click', (event)=> {
+//     $hamburger.classList.toggle('active');
+//     $menu.classList.toggle('is-show');
+// });
 
