@@ -13,7 +13,7 @@ var hash = '#'; // Defaults to: '#'
 var router = new Navigo(root, useHash, hash);
 const $app = document.getElementById('app');
 const home = new Home();
-const timer = new Timer();
+// const timer = new Timer();
 
 const closeAction = true; //настройка оставляет только историю, убирая регистрацию и информацию о подарке
 //
@@ -41,11 +41,11 @@ router.on(() => {
 
     $app.innerHTML = home.toHTML();
     home.init();
-    timer.startTimer();
+    // timer.startTimer();
 
     // const $btn = document.querySelector('.banner-top .c-btn-layout');
-    const $btn = document.querySelector('.banner-full .c-btn-layout');
-    $btn.style.top = (clientHeight - 82) + 'px';
+    // const $btn = document.querySelector('.banner-full .c-btn-layout');
+    // $btn.style.top = (clientHeight - 82) + 'px';
 });
 
 router.notFound(() => {

@@ -76,7 +76,7 @@ export class Form {
                       autocomplete="off"
                     />
   
-                    <div id="tooltipContainerEmailError" class="tooltip tooltip-error">
+                    <div id="tooltipContainerCouponError" class="tooltip tooltip-error">
                       <span id="tooltipMessageCouponError"></span>
                     </div>
                   </div>
@@ -144,13 +144,25 @@ export class Form {
             document.getElementById('inputPhone').classList.remove('no-success');
         }
 
-        if(this.inputCoupon.value.length < 5 || this.inputCoupon.value === ""){
+        const couponValue = Number(this.inputCoupon.value);
+
+
+        if(this.inputCoupon.value.length < 5 || this.inputCoupon.value === "" ){
             document.getElementById('inputCoupon').classList.add('no-success');
             // document.getElementById('tooltipMessageCouponError').innerHTML = 'Введите корректный номер купона';
             return false;
         }else {
             document.getElementById('inputCoupon').classList.remove('no-success');
         }
+
+        if(couponValue > 15000){
+            document.getElementById('tooltipMessageCouponError').innerHTML = 'Введите корректный номер купона';
+            document.getElementById('inputCoupon').classList.add('no-success');
+            return false;
+        } else {
+            document.getElementById('tooltipMessageCouponError').innerHTML = '';
+            document.getElementById('inputCoupon').classList.remove('no-success');
+        };
 
         return true;
     }
@@ -272,7 +284,6 @@ export class Form {
         storage('_formData', formData);
 
         this.validate();
-
 
 
         if(event.target.value === "") {

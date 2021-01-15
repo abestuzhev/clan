@@ -17,38 +17,74 @@ export class Home {
     toHTML() {
         return `
             <div class="wrapper">
-              <!--<div class="header-layout">
+              <div class="header-layout">
                 <div class="layout">
                   <div class=header>
-                    <a href="#" class="header-logo">Клан Престо</a>
+                    <a href=""# class="header-logo">Клан Престо</a>
                    
                     <div class="header-operation">
                         <div class="header-menu">
-                          <a href="./doc/Uslovia_provedenia_aktsii_Klan_Presto.pdf" target="_blank" class="header-menu__link">Положение акции</a>
-                        </div>                        
+<!--                          <a href="#" class="header-menu__link">Эпизоды</a>-->
+<!--                          <a href="#" class="header-menu__link">Персонажи</a>-->
+<!--                          <a href="" class="header-menu__link">Условия розыгрыша</a>-->
+                          <a href="tel:88005500900" class="header-menu__link">8 800 5 500 900</a>
+<!--                          <a href="./doc/Uslovia_provedenia_aktsii_Klan_Presto.pdf" target="_blank" class="header-menu__link">Положение акции</a>-->
+                        </div>
+                        <a href="#add" class="c-btn c-btn-default">Зарегистрировать купон</a>                     
+<!--                        <div class="header-hamburger"><span></span></div> -->
                     </div>
                            
                   </div>          
                 </div>
-              </div>-->
+              </div>
               <div class="banner-top-layout">
-                
-                <div class="layout">
+                 <div class="banner-full">
+                 <div class="banner-full__img">
+                     <img src="./src/img/gift-mobile.png" alt="">
+                  </div>
+                 <div class="banner-full__body">
+                     
+                    <div class="banner-full__head">
+                        <div class="banner-full__title">Выигрывай призы </div>
+                        <div class="banner-full__subtitle">от клана престо</div>
+                     </div>
+                     
+                     <div class="banner-full__timer">
+                        <div class="c-timer"></div>
+                     </div>
+                     <div class="banner-full__text">Для участия сделайте заказ от 1000 руб.</div>
+                      
+                      <div class="c-btn-layout c-btn-layout--center">                        
+                          <a href="https://pizzapresto.ru/menu/#!/Pitstsa" class="c-btn c-btn-default">Сделать заказ</a> 
+                      </div>
+                  </div>
+                  </div>
+                <!--<div class="layout">
                   <div class="banner-top">
                     <div class="banner-top__body">
                       <div class="banner-top__logo">
                         <img src="./src/img/logo-clan.png" class="banner-top__logo-pic" alt="Логотип «Клан Престо»">
                         <img src="${imgBannerTopText}" class="banner-top__logo-text" alt="текст">
                       </div>
-                      <!--<div class="c-btn-layout c-btn-layout--left">                        
+                      <div class="c-btn-layout c-btn-layout--left">                        
                          <a href="#add" class="c-btn c-btn-default">Зарегистрировать купон</a> 
-                      </div>-->
+                      </div>
           
                     </div>
                   </div>
-                </div>
+                </div>-->
               </div>
-              
+              <div class="registration">
+                  <div class="layout">              
+                      <div class="registration-card">
+                         <div class="registration-card__text">
+                         Увеличивайте свои шансы на выигрыш одного из главных призов!
+                         </div>
+                         <a href="#add" class="c-btn c-btn-default">Зарегистрировать купон</a> 
+                      </div> 
+                  </div>             
+              </div>
+<!--              <div class="story"></div>-->
               ${this.slider.toHTML()}
               ${this.init()}
               
@@ -57,7 +93,7 @@ export class Home {
             
               <div class="registration"></div>
               <!--START regulations-->
-              <!--<div class="regulation" id="conditions">
+              <div class="regulation" id="conditions">
                 <div class="layout">
                   <div class="regulation-grid">
                     <div class="regulation-img">
@@ -96,7 +132,9 @@ export class Home {
                           </ol>
                         </div>
         
-                        
+                        <!--<div class="c-btn-layout c-btn-layout&#45;&#45;left">-->
+                          <!--<a href="#" class="c-btn c-btn-default">Зарегистрировать купон</a>-->
+                        <!--</div>-->
                       </div>        
                     </div>
                   </div>
@@ -109,7 +147,7 @@ export class Home {
                   </div>
                        
                 </div>        
-              </div>-->
+              </div>
               <!--END regulations-->
               
               <div class="footer">
@@ -117,11 +155,11 @@ export class Home {
                   
                       <div class="footer-grid">
                         <div class="footer-col">
-                            <span class="copyright">© 2021 Пиццерия Престо™ Все права защищены</span>                
+                            <span class="copyright">© 2020 Пиццерия Престо™ Все права защищены</span>                
                         </div>
-                        <!--<div class="footer-col">
+                        <div class="footer-col">
                             <a href="./doc/Uslovia_provedenia_aktsii_Klan_Presto.pdf" target="_blank" class="c-link">Положение акции</a>
-                        </div>-->              
+                        </div>              
                       </div> 
                   
                   </div>
@@ -135,6 +173,8 @@ export class Home {
     init(){
        this.slider.init();
        SimpleScrollbar.initAll();
+
+       // new Timer().startTimer();
 
        return '';
     }
